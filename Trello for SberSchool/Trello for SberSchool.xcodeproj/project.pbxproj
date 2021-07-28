@@ -12,6 +12,12 @@
 		35CE264F26AFBCAE000F4E84 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CE264E26AFBCAE000F4E84 /* StartViewController.swift */; };
 		35CE265426AFBCB2000F4E84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35CE265326AFBCB2000F4E84 /* Assets.xcassets */; };
 		35CE265726AFBCB2000F4E84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35CE265526AFBCB2000F4E84 /* LaunchScreen.storyboard */; };
+		C0B8977F26B0450500771113 /* TreangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8977A26B0450500771113 /* TreangleView.swift */; };
+		C0B8978026B0450500771113 /* SingletoneUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8977B26B0450500771113 /* SingletoneUI.swift */; };
+		C0B8978126B0450500771113 /* PaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8977D26B0450500771113 /* PaintViewController.swift */; };
+		C0B8978226B0450500771113 /* RectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8977E26B0450500771113 /* RectView.swift */; };
+		C0B8978A26B0484100771113 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8978926B0484100771113 /* CircleView.swift */; };
+		C0B8978D26B0495D00771113 /* OvalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8978C26B0495D00771113 /* OvalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +28,12 @@
 		35CE265326AFBCB2000F4E84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35CE265626AFBCB2000F4E84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35CE265826AFBCB2000F4E84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0B8977A26B0450500771113 /* TreangleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreangleView.swift; sourceTree = "<group>"; };
+		C0B8977B26B0450500771113 /* SingletoneUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingletoneUI.swift; sourceTree = "<group>"; };
+		C0B8977D26B0450500771113 /* PaintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintViewController.swift; sourceTree = "<group>"; };
+		C0B8977E26B0450500771113 /* RectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectView.swift; sourceTree = "<group>"; };
+		C0B8978926B0484100771113 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		C0B8978C26B0495D00771113 /* OvalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 		35CE264926AFBCAE000F4E84 /* Trello for SberSchool */ = {
 			isa = PBXGroup;
 			children = (
+				C0B8977926B044BA00771113 /* Paint */,
 				35CE264A26AFBCAE000F4E84 /* AppDelegate.swift */,
 				35CE264C26AFBCAE000F4E84 /* SceneDelegate.swift */,
 				35CE264E26AFBCAE000F4E84 /* StartViewController.swift */,
@@ -62,6 +75,27 @@
 				35CE265826AFBCB2000F4E84 /* Info.plist */,
 			);
 			path = "Trello for SberSchool";
+			sourceTree = "<group>";
+		};
+		C0B8977926B044BA00771113 /* Paint */ = {
+			isa = PBXGroup;
+			children = (
+				C0B8977D26B0450500771113 /* PaintViewController.swift */,
+				C0B8977B26B0450500771113 /* SingletoneUI.swift */,
+				C0B8977C26B0450500771113 /* Shape */,
+			);
+			path = Paint;
+			sourceTree = "<group>";
+		};
+		C0B8977C26B0450500771113 /* Shape */ = {
+			isa = PBXGroup;
+			children = (
+				C0B8977E26B0450500771113 /* RectView.swift */,
+				C0B8977A26B0450500771113 /* TreangleView.swift */,
+				C0B8978926B0484100771113 /* CircleView.swift */,
+				C0B8978C26B0495D00771113 /* OvalView.swift */,
+			);
+			path = Shape;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,8 +167,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0B8978A26B0484100771113 /* CircleView.swift in Sources */,
 				35CE264F26AFBCAE000F4E84 /* StartViewController.swift in Sources */,
+				C0B8978D26B0495D00771113 /* OvalView.swift in Sources */,
+				C0B8978126B0450500771113 /* PaintViewController.swift in Sources */,
+				C0B8978226B0450500771113 /* RectView.swift in Sources */,
 				35CE264B26AFBCAE000F4E84 /* AppDelegate.swift in Sources */,
+				C0B8977F26B0450500771113 /* TreangleView.swift in Sources */,
+				C0B8978026B0450500771113 /* SingletoneUI.swift in Sources */,
 				35CE264D26AFBCAE000F4E84 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
