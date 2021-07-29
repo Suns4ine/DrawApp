@@ -15,7 +15,7 @@ final class StartCollectionViewCell: UICollectionViewCell {
         label.backgroundColor = .clear
         label.numberOfLines = 2
         label.tintColor = UIColor.black
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -41,14 +41,18 @@ final class StartCollectionViewCell: UICollectionViewCell {
         nameDraw.text = model.name
     }
     
+    func changeName(aligent: NSTextAlignment) {
+        nameDraw.textAlignment = aligent
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         NSLayoutConstraint.activate([
             nameDraw.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            nameDraw.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            nameDraw.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            nameDraw.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20)
+            nameDraw.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            nameDraw.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            nameDraw.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
         ])
     }
 }
