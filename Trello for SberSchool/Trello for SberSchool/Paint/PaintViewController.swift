@@ -11,6 +11,7 @@ class PaintViewController: UIViewController {
     
     private var array = [UIView]()
     private let model: PaintUI = Singletone.shared
+    private var touch = Set<UITouch>()
     
     private let deleteButton: UIButton = {
         let button = UIButton(frame: .zero)
@@ -46,13 +47,28 @@ class PaintViewController: UIViewController {
         switch sender.state {
         case .began:
             initialCenter = sender.location(in: view)
-            let shape = createShape()
-            array.append(shape)
-            self.view.addSubview(array[array.count - 1])
+            
+            switch model.shape {
+            case .Line:
+                let shape = createShape()
+                shape.touchesBegan(Set<UITouch>(), with: nil)
+                array.append(shape)
+                self.view.addSubview(array[array.count - 1])
+            default:
+                let shape = createShape()
+                array.append(shape)
+                self.view.addSubview(array[array.count - 1])
+            }
         case .changed:
-            let translation = sender.translation(in: view)
-            array[array.count - 1].frame = CGRect(x: initialCenter.x, y: initialCenter.y, width: translation.x, height: translation.y)
-            array[array.count - 1].setNeedsDisplay()
+            switch model.shape {
+            case .Line:
+                array[array.count - 1].touchesMoved(self.touch, with: nil)
+                array[array.count - 1].setNeedsDisplay()
+            default:
+                let translation = sender.translation(in: view)
+                array[array.count - 1].frame = CGRect(x: initialCenter.x, y: initialCenter.y, width: translation.x, height: translation.y)
+                array[array.count - 1].setNeedsDisplay()
+            }
         default:
             break
         }
@@ -68,7 +84,13 @@ class PaintViewController: UIViewController {
             return CircleView(frame: .zero)
         case .Oval:
             return OvalView(frame: .zero)
+        case .Line:
+            return LineView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.touch = touches
     }
 }
 
