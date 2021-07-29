@@ -8,14 +8,26 @@
 import UIKit
 
 class StartViewController: UIViewController {
+    
+    private let paintVC = PaintViewController()
+    
+    private let buttonPresentPaintVC: UIButton = {
+        let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 30))
+        button.setTitle("Paint", for: .reserved)
+        button.addTarget(self, action: #selector(tappedPaintButton(_:)), for: .touchUpInside)
+        button.backgroundColor = .black
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .systemGreen
-        // Do any additional setup after loading the view.
+        buttonPresentPaintVC.backgroundColor = .red
+        view.addSubview(buttonPresentPaintVC)
     }
-
-
+    
+    @objc private func tappedPaintButton(_ sender: UIButton) {
+        self.navigationController?.pushViewController(paintVC, animated: true)
+    }
 }
 
