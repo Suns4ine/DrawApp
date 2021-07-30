@@ -42,7 +42,7 @@ class StartViewController: UIViewController {
         super.viewDidLoad()
         editTitle()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newDraw))
-        view.backgroundColor = .systemGreen
+        view.backgroundColor = .white
         [collectionView].forEach{ view.addSubview($0)}
         
         collectionView.delegate = self
@@ -59,24 +59,47 @@ class StartViewController: UIViewController {
             let spacing: CGFloat = 1
             let height = self.screenSize.width
 
+            let topItem = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .fractionalHeight(1.0))
+            let item = NSCollectionLayoutItem(layoutSize: topItem)
+            item.contentInsets = NSDirectionalEdgeInsets.init(top: spacing/2,
+                                                              leading: spacing/2,
+                                                              bottom: spacing/2,
+                                                              trailing: spacing/2)
+        
+            let groupSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .absolute(height/3))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                           subitem:
+                                                            item, count: 3)
+            
+            group.contentInsets = NSDirectionalEdgeInsets(top: 0,
+                                                          leading:
+                                                            spacing/2,
+                                                          bottom: 0,
+                                                          trailing: spacing/2)
             
             let leadingItem = NSCollectionLayoutItem(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.67),
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.6669),
                                                    heightDimension: .absolute(height * 2/3)))
-            leadingItem.contentInsets = NSDirectionalEdgeInsets(top: spacing,
-                                                                leading: spacing,
-                                                                bottom: spacing,
-                                                                trailing: spacing)
+            
+            leadingItem.contentInsets = NSDirectionalEdgeInsets(top: spacing/2,
+                                                                leading: spacing/2,
+                                                                bottom: spacing/2,
+                                                                trailing: spacing/2)
 
             let trailingItem = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                    heightDimension: .absolute(height/3)))
-            trailingItem.contentInsets = NSDirectionalEdgeInsets(top: spacing,
-                                                                 leading: spacing,
-                                                                 bottom: spacing,
-                                                                 trailing: spacing)
             
-            let trailingGroup = NSCollectionLayoutGroup.vertical(
+            trailingItem.contentInsets = NSDirectionalEdgeInsets(top: spacing/2,
+                                                                 leading: spacing/2,
+                                                                 bottom: spacing/2,
+                                                                 trailing: spacing/2)
+
+            var trailingGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33),
                                                    heightDimension: .absolute(height * 2/3)),
                 subitem: trailingItem, count: 2)
@@ -85,22 +108,37 @@ class StartViewController: UIViewController {
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                    heightDimension: .absolute(height * 2/3)),
                 subitems: [leadingItem, trailingGroup])
-            
+
+            trailingGroup = NSCollectionLayoutGroup.vertical(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.333),
+                                                   heightDimension: .absolute(height * 2/3)),
+                subitem: trailingItem, count: 2)
+//
+//            leadingItem.contentInsets = NSDirectionalEdgeInsets(top: spacing/2,
+//                                                                leading: spacing,
+//                                                                bottom: spacing/2,
+//                                                                trailing: spacing/2)
+//            leadingItem.contentInsets = NSDirectionalEdgeInsets(top: spacing/2,
+//                                                                 leading: spacing/2,
+//                                                                 bottom: spacing/2,
+//                                                                 trailing: 0)
+//            trailingGroup.contentInsets = NSDirectionalEdgeInsets(top: 0,
+//                                                                 leading: 0,
+//                                                                 bottom: 0,
+//                                                                 trailing: 0)
+//
             let secondBottomNestedGroup = NSCollectionLayoutGroup.horizontal(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                    heightDimension: .absolute(height * 2/3)),
-                subitems: [trailingGroup ,leadingItem])
+                subitems: [trailingGroup, leadingItem])
+//            secondBottomNestedGroup.contentInsets = NSDirectionalEdgeInsets(top: 0,
+//                                                                 leading: spacing/2,
+//                                                                 bottom: 0,
+//                                                                 trailing: spacing/2)
+            //secondBottomNestedGroup.contentInsets = NSDirectionalEdgeInsets(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)
 
-            let topItem = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1.0))
-            let item = NSCollectionLayoutItem(layoutSize: topItem)
-        
-            let groupSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(height/3))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
-            group.interItemSpacing = .fixed(spacing)
+            //group.interItemSpacing = .fixed(spacing)
+            //group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: spacing, bottom: 0, trailing: spacing)
 
             let firstNestedGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
