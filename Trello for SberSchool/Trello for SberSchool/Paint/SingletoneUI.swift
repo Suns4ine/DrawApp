@@ -11,8 +11,10 @@ import UIKit
 enum ShapeType {
     case Treangle
     case Rectangle
+    case RectangleCorners
     case Circle
     case Oval
+    case Line
 }
 
 protocol PaintUI {
@@ -31,7 +33,7 @@ class Singletone: PaintUI {
     }()
     
     var color: UIColor = .red
-    var shape: ShapeType = .Oval
+    var shape: ShapeType = .RectangleCorners
     
     func setColor(color: UIColor) {
         self.color = color

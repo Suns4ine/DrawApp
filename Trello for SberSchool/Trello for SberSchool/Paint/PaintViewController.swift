@@ -9,8 +9,10 @@ import UIKit
 
 class PaintViewController: UIViewController {
     
-    private var array = [UIView]()
     private let model: PaintUI = Singletone.shared
+    private var touch = Set<UITouch>()
+    private var array = [UIView]()
+    private var initialCenter: CGPoint = .zero
     
     private let deleteButton: UIButton = {
         let button = UIButton(frame: .zero)
@@ -32,6 +34,54 @@ class PaintViewController: UIViewController {
         self.view.addGestureRecognizer(myGesturuRecognizer)
     }
     
+    @objc private func myPan(_ sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            initialCenter = sender.location(in: view)
+            
+            switch model.shape {
+            case .Line:
+                let shape = createShape()
+                shape.touchesBegan(Set<UITouch>(), with: nil)
+                array.append(shape)
+                self.view.addSubview(array[array.count - 1])
+            default:
+                let shape = createShape()
+                array.append(shape)
+                self.view.addSubview(array[array.count - 1])
+            }
+        case .changed:
+            switch model.shape {
+            case .Line:
+                array[array.count - 1].touchesMoved(self.touch, with: nil)
+                array[array.count - 1].setNeedsDisplay()
+            default:
+                let translation = sender.translation(in: view)
+                array[array.count - 1].frame = CGRect(x: initialCenter.x, y: initialCenter.y, width: translation.x, height: translation.y)
+                array[array.count - 1].setNeedsDisplay()
+            }
+        default:
+            break
+        }
+    }
+    
+    private func createShape() -> UIView {
+        switch model.shape {
+        case .Rectangle:
+            return RectView(frame: .zero)
+        case .RectangleCorners:
+            return RectableCornersView(frame: .zero)
+        case .Treangle:
+            return TreangleView(frame: .zero)
+        case .Circle:
+            return CircleView(frame: .zero)
+        case .Oval:
+            return OvalView(frame: .zero)
+        case .Line:
+            return LineView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        }
+    }
+    
     @objc private func deleteLast(_ sender: UIButton) {
         guard array.count > 0 else {
             return
@@ -40,51 +90,7 @@ class PaintViewController: UIViewController {
         array.remove(at: array.count - 1)
     }
     
-    private var initialCenter: CGPoint = .zero
-    
-    @objc private func myPan(_ sender: UIPanGestureRecognizer) {
-        switch sender.state {
-        case .began:
-            initialCenter = sender.location(in: view)
-            let shape = createShape()
-            array.append(shape)
-            self.view.addSubview(array[array.count - 1])
-        case .changed:
-            let translation = sender.translation(in: view)
-            array[array.count - 1].frame = CGRect(x: initialCenter.x, y: initialCenter.y, width: translation.x, height: translation.y)
-            array[array.count - 1].setNeedsDisplay()
-        default:
-            break
-        }
-    }
-    
-    func createShape() -> UIView {
-        switch model.shape {
-        case .Rectangle:
-            return RectView(frame: .zero)
-        case .Treangle:
-            return TreangleView(frame: .zero)
-        case .Circle:
-            return CircleView(frame: .zero)
-        case .Oval:
-            return OvalView(frame: .zero)
-        }
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.touch = touches
     }
 }
-
-
-
-// MARK: - move shape (оставлю на всякий)
-//    @objc private func didPan(_ sender: UIPanGestureRecognizer) {
-//        switch sender.state {
-//        case .began:
-//            initialCenter = treangleView.center
-//        case .changed:
-//            let translation = sender.translation(in: view)
-//
-//            treangleView.center = CGPoint(x: initialCenter.x + translation.x,
-//                                          y: initialCenter.y + translation.y)
-//        default:
-//            break
-//        }
-//    }
