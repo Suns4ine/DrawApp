@@ -9,6 +9,9 @@ import UIKit
 
 class PaintViewController: UIViewController {
     
+    private var drawModel: DrawModel = DrawModel(name: "", wasSaved: false)
+    private var index: Int = 2
+    
     private let model: PaintUI = Singletone.shared
     private var touch = Set<UITouch>()
     private var array = [UIView]()
@@ -26,12 +29,74 @@ class PaintViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
-        self.view.addSubview(deleteButton)
-        deleteButton.addTarget(self, action: #selector(deleteLast(_:)), for: .touchUpInside)
-        deleteButton.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
+       // self.view.addSubview(deleteButton)
+        //deleteButton.addTarget(self, action: #selector(deleteLast(_:)), for: .touchUpInside)
+       // deleteButton.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
 
+        self.navigationItem.rightBarButtonItems =
+            [UIBarButtonItem(image: UIImage(named: "check-mark-black-outline"),
+                             style: .done,
+                             target: self,
+                             action: #selector(saveDrawing)),
+             UIBarButtonItem(image: UIImage(named: "undo"),
+                             style: .done,
+                             target: self,
+                             action: #selector(deleteLast(_:)))]
+        
+        self.navigationController?.navigationBar.tintColor = .black
+        
         let myGesturuRecognizer = UIPanGestureRecognizer(target: self, action: #selector(myPan(_:)))
         self.view.addGestureRecognizer(myGesturuRecognizer)
+    }
+    
+    @objc
+    private func saveDrawing() {
+        
+        let alertController = UIAlertController(title: "First Name",
+                                                message: "Give a name to your drawing",
+                                                preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
+            if let nameDrawningTextField = alertController.textFields?[0] {
+                if let text = nameDrawningTextField.text {
+                    if !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                        self.drawModel.name = text.trimmingCharacters(in: .whitespacesAndNewlines)
+                        self.finish(drawing: self.drawModel)
+                    }
+                }
+            }
+        }
+        
+        alertController.addTextField { (textField) in textField.placeholder = "Name" }
+
+        alertController.addAction(confirmAction)
+        alertController.addAction(.init(title: "Canel", style: .cancel, handler: nil))
+        
+        if drawModel.wasSaved == false {
+            present(alertController, animated: true, completion: nil)
+        } else {
+            finish(drawing: drawModel)
+        }
+    }
+    
+    private func finish(drawing: DrawModel) {
+        var drawing = drawing
+        let vc = StartViewController()
+        
+        if drawing.wasSaved == false {
+            drawing.wasSaved = true
+            StartViewController.arrDrawings.addDrawing(with: drawing)
+        } else {
+            StartViewController.arrDrawings.editDrawing(with: drawing, index: index)
+        }
+        
+        vc.viewWillAppear(true)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func configure(with model: DrawModel, index: Int) {
+        drawModel = model
+        self.index = index
     }
     
     @objc private func myPan(_ sender: UIPanGestureRecognizer) {
