@@ -10,9 +10,8 @@ import UIKit
 class PaintViewController: UIViewController {
     
     private let model: PaintUI = Singletone.shared
-    
-    private var array = [UIView]()
     private var touch = Set<UITouch>()
+    private var array = [UIView]()
     private var initialCenter: CGPoint = .zero
     
     private let deleteButton: UIButton = {
