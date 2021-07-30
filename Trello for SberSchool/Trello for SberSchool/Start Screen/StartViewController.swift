@@ -10,7 +10,7 @@ import UIKit
 class StartViewController: UIViewController {
     
     private let screenSize = UIScreen.main.bounds
-    private let arrDrawings: [DrawModel] = [.init(name: "Новый Рисунок"), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true)]
+    private let arrDrawings: [DrawModel] = [.init(name: "Новый Рисунок"), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true)]
     
     private lazy var collectionView: UICollectionView = {
         let collectionLayout = createCustomLayout()
