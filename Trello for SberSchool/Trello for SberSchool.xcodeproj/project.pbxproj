@@ -51,6 +51,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		355C1F1C26B43BA400909D4D /* Start Screen */ = {
+			isa = PBXGroup;
+			children = (
+				35DA30B426B2553C001BF2FA /* StartCollectionViewCell.swift */,
+				35CE264E26AFBCAE000F4E84 /* StartViewController.swift */,
+			);
+			path = "Start Screen";
+			sourceTree = "<group>";
+		};
+		355C1F1D26B43BBF00909D4D /* Another Files */ = {
+			isa = PBXGroup;
+			children = (
+				35CE264C26AFBCAE000F4E84 /* SceneDelegate.swift */,
+				35CE264A26AFBCAE000F4E84 /* AppDelegate.swift */,
+				35CE265526AFBCB2000F4E84 /* LaunchScreen.storyboard */,
+			);
+			path = "Another Files";
+			sourceTree = "<group>";
+		};
 		35CE263E26AFBCAE000F4E84 = {
 			isa = PBXGroup;
 			children = (
@@ -70,14 +89,11 @@
 		35CE264926AFBCAE000F4E84 /* Trello for SberSchool */ = {
 			isa = PBXGroup;
 			children = (
+				355C1F1D26B43BBF00909D4D /* Another Files */,
+				355C1F1C26B43BA400909D4D /* Start Screen */,
 				C0B8977926B044BA00771113 /* Paint */,
-				35CE264A26AFBCAE000F4E84 /* AppDelegate.swift */,
-				35CE264C26AFBCAE000F4E84 /* SceneDelegate.swift */,
-				35CE264E26AFBCAE000F4E84 /* StartViewController.swift */,
 				35CE265326AFBCB2000F4E84 /* Assets.xcassets */,
-				35CE265526AFBCB2000F4E84 /* LaunchScreen.storyboard */,
 				35CE265826AFBCB2000F4E84 /* Info.plist */,
-				35DA30B426B2553C001BF2FA /* StartCollectionViewCell.swift */,
 				35DA30B726B259C7001BF2FA /* DrawModel.swift */,
 			);
 			path = "Trello for SberSchool";

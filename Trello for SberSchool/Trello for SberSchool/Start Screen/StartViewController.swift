@@ -10,7 +10,7 @@ import UIKit
 class StartViewController: UIViewController {
     
     private let screenSize = UIScreen.main.bounds
-    private let arrDrawings: [Int] = Array(-100...100)
+    private let arrDrawings: [DrawModel] = [.init(name: "Новый Рисунок"), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true)]
     
     private lazy var collectionView: UICollectionView = {
         let collectionLayout = createCustomLayout()
@@ -74,7 +74,7 @@ extension StartViewController: UICollectionViewDelegate, UICollectionViewDataSou
                                                             for: indexPath) as? StartCollectionViewCell else { return .init() }
         
         cell.backgroundColor = UIColor.init(cgColor: CGColor(red: .random(), green: .random(), blue: .random(), alpha: 1))
-        cell.configure(with: .init(name: String(arrDrawings[indexPath.row])))
+        cell.configure(with: arrDrawings[indexPath.row])
         
         return cell
     }

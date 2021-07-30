@@ -11,6 +11,7 @@ import UIKit
 
 struct DrawModel {
     var name: String
+    var wasSaved: Bool = false
 }
 
 

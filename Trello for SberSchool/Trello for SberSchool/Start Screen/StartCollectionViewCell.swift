@@ -21,6 +21,14 @@ final class StartCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    private let imageAdd: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "plus")
+        image.image = image.image?.tinted(with: .black)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -32,17 +40,20 @@ final class StartCollectionViewCell: UICollectionViewCell {
     }
     
     private func setup() {
-        [nameDraw].forEach{ addSubview($0)}
+        [nameDraw, imageAdd].forEach{ addSubview($0)}
         
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func configure(with model: DrawModel) {
         nameDraw.text = model.name
-    }
-    
-    func changeName(aligent: NSTextAlignment) {
-        nameDraw.textAlignment = aligent
+        
+        if model.wasSaved == true {
+            imageAdd.isHidden = true
+        } else {
+            nameDraw.textAlignment = .center
+            imageAdd.isHidden = false
+        }
     }
     
     override func layoutSubviews() {
@@ -52,7 +63,21 @@ final class StartCollectionViewCell: UICollectionViewCell {
             nameDraw.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             nameDraw.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             nameDraw.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            nameDraw.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
+            nameDraw.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            
+            imageAdd.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            imageAdd.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         ])
+    }
+}
+
+extension UIImage {
+    func tinted(with color: UIColor, isOpaque: Bool = false) -> UIImage? {
+        let format = imageRendererFormat
+        format.opaque = isOpaque
+        return UIGraphicsImageRenderer(size: size, format: format).image { _ in
+            color.set()
+            withRenderingMode(.alwaysTemplate).draw(at: .zero)
+        }
     }
 }
