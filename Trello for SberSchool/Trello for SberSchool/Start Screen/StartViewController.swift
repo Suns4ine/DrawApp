@@ -54,8 +54,9 @@ class StartViewController: UIViewController {
         collectionView.register(StartCollectionViewCell.self, forCellWithReuseIdentifier: "StartCollectionViewCell")
     }
     
-    @objc private func newDraw() {
+    @objc private func newDraw(with index: Int) {
         let vc = PaintViewController()
+        vc.configure(with: StartViewController.arrDrawings.arrary[index], index: index)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -102,7 +103,7 @@ extension StartViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        newDraw()
+        newDraw(with: indexPath.row)
     }
     
     func updateCollectionView() {
