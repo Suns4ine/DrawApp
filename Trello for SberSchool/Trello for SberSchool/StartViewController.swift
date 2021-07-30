@@ -38,28 +38,6 @@ class StartViewController: UIViewController {
         }
     }
     
-
-    private func createLayout() -> UICollectionViewLayout {
-        let spacing: CGFloat = 1
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(screenSize.width/3))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3) // <---
-        group.interItemSpacing = .fixed(spacing)
-
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)
-        section.interGroupSpacing = spacing
-
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         editTitle()
@@ -71,13 +49,77 @@ class StartViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(StartCollectionViewCell.self, forCellWithReuseIdentifier: "StartCollectionViewCell")
         buttonPresentPaintVC.backgroundColor = .red
-        //view.addSubview(buttonPresentPaintVC)
     }
     
-//    @objc private func tappedPaintButton(_ sender: UIButton) {
-//        let vc = PaintViewController()
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
+    
+    private func createLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout {
+            (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+
+            let spacing: CGFloat = 1
+            let height = self.screenSize.width
+
+            
+            let leadingItem = NSCollectionLayoutItem(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.67),
+                                                   heightDimension: .absolute(height * 2/3)))
+            leadingItem.contentInsets = NSDirectionalEdgeInsets(top: spacing,
+                                                                leading: spacing,
+                                                                bottom: spacing,
+                                                                trailing: spacing)
+
+            let trailingItem = NSCollectionLayoutItem(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .absolute(height/3)))
+            trailingItem.contentInsets = NSDirectionalEdgeInsets(top: spacing,
+                                                                 leading: spacing,
+                                                                 bottom: spacing,
+                                                                 trailing: spacing)
+            
+            let trailingGroup = NSCollectionLayoutGroup.vertical(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33),
+                                                   heightDimension: .absolute(height * 2/3)),
+                subitem: trailingItem, count: 2)
+
+            let firstBottomNestedGroup = NSCollectionLayoutGroup.horizontal(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .absolute(height * 2/3)),
+                subitems: [leadingItem, trailingGroup])
+            
+            let secondBottomNestedGroup = NSCollectionLayoutGroup.horizontal(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .absolute(height * 2/3)),
+                subitems: [trailingGroup ,leadingItem])
+
+            let topItem = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .fractionalHeight(1.0))
+            let item = NSCollectionLayoutItem(layoutSize: topItem)
+        
+            let groupSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .absolute(height/3))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
+            group.interItemSpacing = .fixed(spacing)
+
+            let firstNestedGroup = NSCollectionLayoutGroup.vertical(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .absolute(height)),
+                subitems: [group, firstBottomNestedGroup])
+            
+            let secondNestedGroup = NSCollectionLayoutGroup.vertical(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .absolute(height)),
+                subitems: [group, secondBottomNestedGroup])
+            
+            let arrNestedGrpup = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(height * 2)), subitems: [firstNestedGroup ,secondNestedGroup])
+            
+            let section = NSCollectionLayoutSection(group: arrNestedGrpup)
+            return section
+
+        }
+        return layout
+    }
     
     @objc private func newDraw() {
         let vc = PaintViewController()
@@ -133,43 +175,23 @@ extension CGFloat {
     }
 }
 
-//
 //private func createLayout() -> UICollectionViewLayout {
-//    let layout = UICollectionViewCompositionalLayout {
-//        (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+//    let spacing: CGFloat = 1
+//    let itemSize = NSCollectionLayoutSize(
+//        widthDimension: .fractionalWidth(1.0),
+//        heightDimension: .fractionalHeight(1.0))
+//    let item = NSCollectionLayoutItem(layoutSize: itemSize)
 //
-//        let leadingItem = NSCollectionLayoutItem(
-//            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7),
-//                                               heightDimension: .fractionalHeight(1.0)))
-//        leadingItem.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+//    let groupSize = NSCollectionLayoutSize(
+//        widthDimension: .fractionalWidth(1.0),
+//        heightDimension: .absolute(screenSize.width/3))
+//    let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3) // <---
+//    group.interItemSpacing = .fixed(spacing)
 //
-//        let trailingItem = NSCollectionLayoutItem(
-//            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-//                                               heightDimension: .fractionalHeight(0.3)))
+//    let section = NSCollectionLayoutSection(group: group)
+//    section.contentInsets = .init(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)
+//    section.interGroupSpacing = spacing
 //
-//        trailingItem.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-//        let trailingGroup = NSCollectionLayoutGroup.vertical(
-//            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3),
-//                                               heightDimension: .fractionalHeight(1.0)),
-//            subitem: trailingItem, count: 2)
-//
-//        let bottomNestedGroup = NSCollectionLayoutGroup.horizontal(
-//            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-//                                               heightDimension: .fractionalHeight(0.6)),
-//            subitems: [leadingItem, trailingGroup])
-//
-//        let topItem = NSCollectionLayoutItem(
-//            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0 / 3.0),
-//                                               heightDimension: .fractionalHeight(0.3)))
-//        topItem.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-//
-//        let nestedGroup = NSCollectionLayoutGroup.vertical(
-//            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-//                                               heightDimension: .fractionalHeight(0.4)),
-//            subitems: [topItem, bottomNestedGroup])
-//        let section = NSCollectionLayoutSection(group: nestedGroup)
-//        return section
-//
-//    }
+//    let layout = UICollectionViewCompositionalLayout(section: section)
 //    return layout
 //}

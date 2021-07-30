@@ -6,7 +6,14 @@
 //
 
 import Foundation
+import UIKit
+
 
 struct DrawModel {
     var name: String
+}
+
+
+func configure(with model: DrawModel) {
+    
 }
