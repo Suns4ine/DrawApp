@@ -12,13 +12,10 @@
 		35CE264F26AFBCAE000F4E84 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CE264E26AFBCAE000F4E84 /* StartViewController.swift */; };
 		35CE265426AFBCB2000F4E84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35CE265326AFBCB2000F4E84 /* Assets.xcassets */; };
 		35CE265726AFBCB2000F4E84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35CE265526AFBCB2000F4E84 /* LaunchScreen.storyboard */; };
-<<<<<<< HEAD
 		35DA30B526B2553C001BF2FA /* StartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DA30B426B2553C001BF2FA /* StartCollectionViewCell.swift */; };
 		35DA30B826B259C7001BF2FA /* DrawModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DA30B726B259C7001BF2FA /* DrawModel.swift */; };
-=======
 		C03BCF0026B4250900257B55 /* RectangleCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BCEFF26B4250900257B55 /* RectangleCornersView.swift */; };
 		C095A65226B2F04800213ED5 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095A65126B2F04800213ED5 /* LineView.swift */; };
->>>>>>> 0f0fc640c8e2103980a660253c88c18e8c7a0263
 		C0B8977F26B0450500771113 /* TreangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8977A26B0450500771113 /* TreangleView.swift */; };
 		C0B8978026B0450500771113 /* SingletoneUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8977B26B0450500771113 /* SingletoneUI.swift */; };
 		C0B8978126B0450500771113 /* PaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8977D26B0450500771113 /* PaintViewController.swift */; };
@@ -35,13 +32,10 @@
 		35CE265326AFBCB2000F4E84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35CE265626AFBCB2000F4E84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35CE265826AFBCB2000F4E84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		35DA30B426B2553C001BF2FA /* StartCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCollectionViewCell.swift; sourceTree = "<group>"; };
 		35DA30B726B259C7001BF2FA /* DrawModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawModel.swift; sourceTree = "<group>"; };
-=======
 		C03BCEFF26B4250900257B55 /* RectangleCornersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleCornersView.swift; sourceTree = "<group>"; };
 		C095A65126B2F04800213ED5 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
->>>>>>> 0f0fc640c8e2103980a660253c88c18e8c7a0263
 		C0B8977A26B0450500771113 /* TreangleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreangleView.swift; sourceTree = "<group>"; };
 		C0B8977B26B0450500771113 /* SingletoneUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingletoneUI.swift; sourceTree = "<group>"; };
 		C0B8977D26B0450500771113 /* PaintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintViewController.swift; sourceTree = "<group>"; };
@@ -210,12 +204,9 @@
 				35CE264B26AFBCAE000F4E84 /* AppDelegate.swift in Sources */,
 				C0B8977F26B0450500771113 /* TreangleView.swift in Sources */,
 				C0B8978026B0450500771113 /* SingletoneUI.swift in Sources */,
-<<<<<<< HEAD
 				35DA30B826B259C7001BF2FA /* DrawModel.swift in Sources */,
-=======
 				C095A65226B2F04800213ED5 /* LineView.swift in Sources */,
 				C03BCF0026B4250900257B55 /* RectangleCornersView.swift in Sources */,
->>>>>>> 0f0fc640c8e2103980a660253c88c18e8c7a0263
 				35CE264D26AFBCAE000F4E84 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
