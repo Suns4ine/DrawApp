@@ -228,7 +228,13 @@ extension PaintViewController : UITableViewDelegate, UITableViewDataSource {
         let color = colors[indexPath.row]
         switch selectColorPicker {
         case true:
-            self.colorPickerView.frame = CGRect(x: 20, y: 100, width: 30, height: 30 * self.colors.count)
+            UIView.animate(withDuration: 0.3,
+                           delay: 0.0,
+              options: .curveEaseIn,
+              animations: {
+                self.colorPickerView.frame = CGRect(x: 20, y: 100, width: 30, height: 30 * self.colors.count)
+              },
+              completion: nil)
             self.selectColorPicker.toggle()
         case false:
             self.colorPickerView.frame = CGRect(x: 20, y: 100, width: 30, height: 30)
