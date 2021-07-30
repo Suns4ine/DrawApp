@@ -30,8 +30,22 @@ class PaintViewController: UIViewController {
         deleteButton.addTarget(self, action: #selector(deleteLast(_:)), for: .touchUpInside)
         deleteButton.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
 
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "check-mark"),
+                                                                   style: .done,
+                                                                   target: self,
+                                                                   action: #selector(saveDrawing)),]
+        
         let myGesturuRecognizer = UIPanGestureRecognizer(target: self, action: #selector(myPan(_:)))
         self.view.addGestureRecognizer(myGesturuRecognizer)
+    }
+    
+    @objc
+    private func saveDrawing() {
+        let vc = StartViewController()
+        StartViewController.arrDrawings.addDrawing(with: .init(name: "One", wasSaved: true))
+        vc.viewWillAppear(true)
+        self.navigationController?.popViewController(animated: true)
+
     }
     
     @objc private func myPan(_ sender: UIPanGestureRecognizer) {

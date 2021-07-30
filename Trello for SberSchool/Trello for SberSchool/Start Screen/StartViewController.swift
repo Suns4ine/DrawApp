@@ -10,7 +10,7 @@ import UIKit
 class StartViewController: UIViewController {
     
     private let screenSize = UIScreen.main.bounds
-    private let arrDrawings: [DrawModel] = [.init(name: "Новый Рисунок"), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true)]
+    static var arrDrawings: DrawsModel = .init()
     
     private lazy var collectionView: UICollectionView = {
         let collectionLayout = createCustomLayout()
@@ -23,12 +23,20 @@ class StartViewController: UIViewController {
     }()
 
     private func editTitle() {
-        switch arrDrawings.count {
+        switch StartViewController.arrDrawings.arrary.count - 1 {
         case 0: self.title = "You don't have a draw"
-        case 1: self.title = "You have \(arrDrawings.count) draw"
-        default: self.title = "You have \(arrDrawings.count) drawnings"
+        case 1: self.title = "You have \(StartViewController.arrDrawings.arrary.count - 1) draw"
+        default: self.title = "You have \(StartViewController.arrDrawings.arrary.count - 1) drawnings"
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        collectionView.reloadData()
+        editTitle()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +74,7 @@ class StartViewController: UIViewController {
 extension StartViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrDrawings.count
+        return StartViewController.arrDrawings.arrary.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -74,7 +82,7 @@ extension StartViewController: UICollectionViewDelegate, UICollectionViewDataSou
                                                             for: indexPath) as? StartCollectionViewCell else { return .init() }
         
         cell.backgroundColor = UIColor.init(cgColor: CGColor(red: .random(), green: .random(), blue: .random(), alpha: 1))
-        cell.configure(with: arrDrawings[indexPath.row])
+        cell.configure(with: StartViewController.arrDrawings.arrary[indexPath.row])
         
         return cell
     }
@@ -95,6 +103,10 @@ extension StartViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         newDraw()
+    }
+    
+    func updateCollectionView() {
+        collectionView.reloadData()
     }
     
     func createCustomLayout() -> UICollectionViewLayout {
@@ -192,3 +204,7 @@ extension CGFloat {
         return CGFloat(arc4random()) / CGFloat(UInt32.max)
     }
 }
+
+/*
+ [.init(name: "Новый Рисунок"), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true)]
+ */

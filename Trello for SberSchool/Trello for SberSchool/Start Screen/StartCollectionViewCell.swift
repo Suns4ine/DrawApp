@@ -21,6 +21,13 @@ final class StartCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    private let backgroundImage: UIImageView = {
+        let image = UIImageView()
+        image.backgroundColor = .clear
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
     private let imageAdd: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "plus")
@@ -40,8 +47,9 @@ final class StartCollectionViewCell: UICollectionViewCell {
     }
     
     private func setup() {
-        [nameDraw, imageAdd].forEach{ addSubview($0)}
+        [nameDraw, imageAdd, backgroundImage].forEach{ addSubview($0)}
         
+        self.backgroundColor = .secondarySystemFill
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -67,6 +75,11 @@ final class StartCollectionViewCell: UICollectionViewCell {
             
             imageAdd.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             imageAdd.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            
+            backgroundImage.topAnchor.constraint(equalTo: self.topAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
     }
 }
