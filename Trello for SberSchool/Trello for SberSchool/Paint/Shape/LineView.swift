@@ -30,10 +30,6 @@ class LineView: UIView {
         }
         
         context.strokePath()
-<<<<<<< HEAD
-=======
-        
->>>>>>> f5f4ffc3d6725d2291b200bff9396bdb84ac274c
     }
     
     var lines = [[CGPoint]]()
