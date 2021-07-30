@@ -8,7 +8,11 @@
 import UIKit
 
 class CircleView: UIView {
+    
     var path: UIBezierPath!
+    var color: UIColor = {
+        return .clear
+    }()
      
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,8 +27,12 @@ class CircleView: UIView {
                                     width: self.frame.size.height,
                                     height: self.frame.size.height))
         
-        UIColor.orange.setFill()
+        color.setFill()
         path.fill()
+    }
+    
+    func setColor(_ color: UIColor) {
+        self.color = color
     }
      
     required init?(coder aDecoder: NSCoder) {

@@ -9,13 +9,17 @@ import UIKit
 
 class LineView: UIView {
     
+    var color: UIColor = {
+        return .clear
+    }()
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         backgroundColor = .clear
         
         guard let context = UIGraphicsGetCurrentContext() else { return }
 
-        context.setStrokeColor(UIColor.red.cgColor)
+        context.setStrokeColor(color.cgColor)
         context.setLineWidth(10)
         context.setLineCap(.butt)
         
@@ -30,6 +34,10 @@ class LineView: UIView {
         }
         
         context.strokePath()
+    }
+    
+    func setColor(_ color: UIColor) {
+        self.color = color
     }
     
     var lines = [[CGPoint]]()

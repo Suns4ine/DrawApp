@@ -8,7 +8,11 @@
 import UIKit
 
 class RectView: UIView {
+    
     var path: UIBezierPath!
+    var color: UIColor = {
+        return .clear
+    }()
      
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -17,8 +21,12 @@ class RectView: UIView {
     
     override func draw(_ rect: CGRect) {
         self.createRectangle()
-        UIColor.orange.setFill()
+        color.setFill()
         path.fill()
+    }
+    
+    func setColor(_ color: UIColor) {
+        self.color = color
     }
      
     required init?(coder aDecoder: NSCoder) {

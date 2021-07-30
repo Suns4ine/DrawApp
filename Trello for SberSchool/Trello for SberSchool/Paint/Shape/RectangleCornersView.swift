@@ -8,7 +8,11 @@
 import UIKit
 
 class RectableCornersView: UIView {
+    
     var path: UIBezierPath!
+    var color: UIColor = {
+        return .clear
+    }()
      
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,8 +22,12 @@ class RectableCornersView: UIView {
     override func draw(_ rect: CGRect) {
         path = UIBezierPath(roundedRect: self.bounds, cornerRadius: 15.0)
         
-        UIColor.orange.setFill()
+        color.setFill()
         path.fill()
+    }
+    
+    func setColor(_ color: UIColor) {
+        self.color = color
     }
      
     required init?(coder aDecoder: NSCoder) {

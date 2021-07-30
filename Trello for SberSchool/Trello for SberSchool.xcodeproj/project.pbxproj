@@ -17,6 +17,7 @@
 		35DA30B826B259C7001BF2FA /* DrawModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DA30B726B259C7001BF2FA /* DrawModel.swift */; };
 		C03BCF0026B4250900257B55 /* RectangleCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BCEFF26B4250900257B55 /* RectangleCornersView.swift */; };
 		C095A65226B2F04800213ED5 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095A65126B2F04800213ED5 /* LineView.swift */; };
+		C0981CBD26B4BC71009C62DA /* CellColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0981CBC26B4BC71009C62DA /* CellColor.swift */; };
 		C0B8977F26B0450500771113 /* TreangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8977A26B0450500771113 /* TreangleView.swift */; };
 		C0B8978026B0450500771113 /* SingletoneUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8977B26B0450500771113 /* SingletoneUI.swift */; };
 		C0B8978126B0450500771113 /* PaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8977D26B0450500771113 /* PaintViewController.swift */; };
@@ -38,6 +39,7 @@
 		35DA30B726B259C7001BF2FA /* DrawModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawModel.swift; sourceTree = "<group>"; };
 		C03BCEFF26B4250900257B55 /* RectangleCornersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleCornersView.swift; sourceTree = "<group>"; };
 		C095A65126B2F04800213ED5 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
+		C0981CBC26B4BC71009C62DA /* CellColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellColor.swift; sourceTree = "<group>"; };
 		C0B8977A26B0450500771113 /* TreangleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreangleView.swift; sourceTree = "<group>"; };
 		C0B8977B26B0450500771113 /* SingletoneUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingletoneUI.swift; sourceTree = "<group>"; };
 		C0B8977D26B0450500771113 /* PaintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				C0B8977D26B0450500771113 /* PaintViewController.swift */,
 				C0B8977B26B0450500771113 /* SingletoneUI.swift */,
 				C0B8977C26B0450500771113 /* Shape */,
+				C0981CBC26B4BC71009C62DA /* CellColor.swift */,
 			);
 			path = Paint;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				C0B8978D26B0495D00771113 /* OvalView.swift in Sources */,
 				35DA30B526B2553C001BF2FA /* StartCollectionViewCell.swift in Sources */,
 				C0B8978126B0450500771113 /* PaintViewController.swift in Sources */,
+				C0981CBD26B4BC71009C62DA /* CellColor.swift in Sources */,
 				C0B8978226B0450500771113 /* RectView.swift in Sources */,
 				35CE264B26AFBCAE000F4E84 /* AppDelegate.swift in Sources */,
 				C0B8977F26B0450500771113 /* TreangleView.swift in Sources */,
