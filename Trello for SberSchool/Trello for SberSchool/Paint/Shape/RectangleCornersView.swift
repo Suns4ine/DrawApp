@@ -1,13 +1,13 @@
 //
-//  CircleView.swift
+//  RectangleCornersView.swift
 //  Trello for SberSchool
 //
-//  Created by Афанасий Корякин on 27.07.2021.
+//  Created by Афанасий Корякин on 30.07.2021.
 //
 
 import UIKit
 
-class CircleView: UIView {
+class RectableCornersView: UIView {
     var path: UIBezierPath!
      
     override init(frame: CGRect) {
@@ -16,12 +16,7 @@ class CircleView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        
-        self.path = UIBezierPath(ovalIn: CGRect(
-                                    x: self.frame.size.width/2 - self.frame.size.height/2,
-                                    y: 0.0,
-                                    width: self.frame.size.height,
-                                    height: self.frame.size.height))
+        path = UIBezierPath(roundedRect: self.bounds, cornerRadius: 15.0)
         
         UIColor.orange.setFill()
         path.fill()
@@ -31,9 +26,8 @@ class CircleView: UIView {
         super.init(coder: aDecoder)
     }
     
+    
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         return nil
     }
 }
-
-
