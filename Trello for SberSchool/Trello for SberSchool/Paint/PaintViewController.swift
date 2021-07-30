@@ -69,6 +69,8 @@ class PaintViewController: UIViewController {
         switch model.shape {
         case .Rectangle:
             return RectView(frame: .zero)
+        case .RectangleCorners:
+            return RectableCornersView(frame: .zero)
         case .Treangle:
             return TreangleView(frame: .zero)
         case .Circle:
