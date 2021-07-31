@@ -8,7 +8,7 @@
 import Foundation
 
 struct DrawsModel {
-    private (set) var arrary: [DrawModel] = [.init(name: "Новый Рисунок")]
+    private (set) var arrary: [DrawModel] = [.init(name: "Новый Рисунок", background: nil)]
     
     mutating func addDrawing(with model: DrawModel) {
         arrary.insert(model, at: 1)

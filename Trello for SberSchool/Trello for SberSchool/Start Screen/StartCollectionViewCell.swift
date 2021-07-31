@@ -47,7 +47,7 @@ final class StartCollectionViewCell: UICollectionViewCell {
     }
     
     private func setup() {
-        [nameDraw, imageAdd, backgroundImage].forEach{ addSubview($0)}
+        [imageAdd, backgroundImage, nameDraw].forEach{ addSubview($0)}
         
         self.backgroundColor = .secondarySystemFill
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -58,6 +58,7 @@ final class StartCollectionViewCell: UICollectionViewCell {
         
         if model.wasSaved == true {
             imageAdd.isHidden = true
+            backgroundImage.image = model.background
         } else {
             nameDraw.textAlignment = .center
             imageAdd.isHidden = false

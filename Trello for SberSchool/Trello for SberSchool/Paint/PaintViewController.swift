@@ -9,7 +9,6 @@ import UIKit
 
 class PaintViewController: UIViewController {
     
-    
     private lazy var blankButton: UIBarButtonItem = {
         let button = UIBarButtonItem.menuButton(self, action: #selector(deleteLast(_:)), imageName: "")
         button.isEnabled = false
@@ -23,13 +22,13 @@ class PaintViewController: UIViewController {
     private var touch = Set<UITouch>()
     private var array = [UIView]()
     private var initialCenter: CGPoint = .zero
-    private var drawModel: DrawModel = DrawModel(name: "", wasSaved: false)
-    private var index: Int = 2
+    private var drawModel: DrawModel?// = DrawModel(name: "", wasSaved: false, background: nil)
     private var selectColorPicker = false
     
     private lazy var colorPickerView: UITableView = {
         let tv = UITableView(frame: .zero, style: .plain)
         tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.backgroundColor = .clear
         tv.delegate = self
         tv.dataSource = self
         tv.register(CellColor.self, forCellReuseIdentifier: colorReuseId)
@@ -48,7 +47,7 @@ class PaintViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .secondarySystemFill
 
         self.navigationItem.rightBarButtonItems =
             [UIBarButtonItem.menuButton(self,
@@ -71,20 +70,22 @@ class PaintViewController: UIViewController {
         var drawing = drawing
         let vc = StartViewController()
         
+        drawing.background = getImageRender()
+        drawing.arrayView = array
+        
         if drawing.wasSaved == false {
             drawing.wasSaved = true
             StartViewController.arrDrawings.addDrawing(with: drawing)
         } else {
-            StartViewController.arrDrawings.editDrawing(with: drawing, index: index)
+            StartViewController.arrDrawings.editDrawing(with: drawing, index: drawing.identifier)
         }
         
         vc.viewWillAppear(true)
         self.navigationController?.popViewController(animated: true)
     }
     
-    func configure(with model: DrawModel, index: Int) {
+    func configure(with model: DrawModel) {
         drawModel = model
-        self.index = index
     }
     
     private func updatePickers() {
@@ -105,6 +106,11 @@ class PaintViewController: UIViewController {
 }
 
 extension PaintViewController {
+    
+    func getImageRender() -> UIImage {
+        self.colorPickerView.isHidden = true
+       return self.view.asImage()
+    }
     
     @objc private func myPan(_ sender: UIPanGestureRecognizer) {
         switch sender.state {
@@ -142,7 +148,7 @@ extension PaintViewController {
     }
 }
 
-extension PaintViewController {
+extension PaintViewController : UITableViewDelegate, UITableViewDataSource {
     
     private func createShape() -> UIView {
         switch model.shape {
@@ -172,13 +178,10 @@ extension PaintViewController {
             return line
         }
     }
-}
-
-extension PaintViewController {
     
     @objc
     private func saveDrawing() {
-        
+        guard var drawing = drawModel else { return }
         let alertController = UIAlertController(title: "First Name",
                                                 message: "Give a name to your drawing",
                                                 preferredStyle: .alert)
@@ -187,8 +190,8 @@ extension PaintViewController {
             if let nameDrawningTextField = alertController.textFields?[0] {
                 if let text = nameDrawningTextField.text {
                     if !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                        self.drawModel.name = text.trimmingCharacters(in: .whitespacesAndNewlines)
-                        self.finish(drawing: self.drawModel)
+                        drawing.name = text.trimmingCharacters(in: .whitespacesAndNewlines)
+                        self.finish(drawing: drawing)
                     }
                 }
             }
@@ -199,15 +202,13 @@ extension PaintViewController {
         alertController.addAction(confirmAction)
         alertController.addAction(.init(title: "Canel", style: .cancel, handler: nil))
         
-        if drawModel.wasSaved == false {
+        if drawModel?.wasSaved == false {
             present(alertController, animated: true, completion: nil)
         } else {
-            finish(drawing: drawModel)
+            finish(drawing: drawing)
         }
     }
-}
 
-extension PaintViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return colors.count
@@ -249,12 +250,6 @@ extension PaintViewController : UITableViewDelegate, UITableViewDataSource {
         }
         
         model.setColor(color: color)
-    }
-}
-
-extension PaintViewController {
-    func getImageRender() -> UIImage {
-       return self.view.asImage()
     }
 }
 

@@ -56,7 +56,7 @@ class StartViewController: UIViewController {
     
     @objc private func newDraw(with index: Int) {
         let vc = PaintViewController()
-        vc.configure(with: StartViewController.arrDrawings.arrary[index], index: index)
+        vc.configure(with: StartViewController.arrDrawings.arrary[index])
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -82,7 +82,7 @@ extension StartViewController: UICollectionViewDelegate, UICollectionViewDataSou
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StartCollectionViewCell",
                                                             for: indexPath) as? StartCollectionViewCell else { return .init() }
         
-        cell.backgroundColor = UIColor.init(cgColor: CGColor(red: .random(), green: .random(), blue: .random(), alpha: 1))
+        //cell.backgroundColor = UIColor.init(cgColor: CGColor(red: .random(), green: .random(), blue: .random(), alpha: 1))
         cell.configure(with: StartViewController.arrDrawings.arrary[indexPath.row])
         
         return cell
@@ -104,10 +104,6 @@ extension StartViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         newDraw(with: indexPath.row)
-    }
-    
-    func updateCollectionView() {
-        collectionView.reloadData()
     }
     
     func createCustomLayout() -> UICollectionViewLayout {
