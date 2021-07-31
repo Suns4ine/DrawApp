@@ -17,6 +17,7 @@ class StartViewController: UIViewController {
         
         let collectionView = UICollectionView(frame: .init(), collectionViewLayout: collectionLayout)
         collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
