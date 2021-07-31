@@ -246,3 +246,18 @@ extension PaintViewController : UITableViewDelegate, UITableViewDataSource {
         model.setColor(color: color)
     }
 }
+
+extension PaintViewController {
+    func getImageRender() -> UIImage {
+       return self.view.asImage()
+    }
+}
+
+extension UIView {
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
+    }
+}
