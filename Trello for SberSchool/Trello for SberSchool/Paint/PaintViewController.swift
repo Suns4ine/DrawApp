@@ -18,7 +18,7 @@ class PaintViewController: UIViewController {
     private let model: PaintUI = Singletone.shared
     private let colorReuseId = "colorReuseId"
     
-    private var colors = [UIColor.blue , .blue, .red, .brown, .cyan, .darkGray, .darkText, .gray, .green, .orange, .purple]
+    private var colors = [UIColor.blue , .blue, .red, .brown, .cyan, .darkGray, .darkText, .gray, .green, .orange, .purple, .magenta, .systemIndigo, .yellow, .white]
     private var touch = Set<UITouch>()
     private var array = [UIView]()
     private var initialCenter: CGPoint = .zero
@@ -235,7 +235,7 @@ extension PaintViewController : UITableViewDelegate, UITableViewDataSource {
                            delay: 0.0,
               options: .curveEaseIn,
               animations: {
-                self.colorPickerView.frame = CGRect(x: 20, y: 100, width: 30, height: 30 * self.colors.count)
+                self.colorPickerView.frame = CGRect(x: 20, y: 100, width: 30, height: 30 * 7)
               },
               completion: nil)
             self.selectColorPicker.toggle()
