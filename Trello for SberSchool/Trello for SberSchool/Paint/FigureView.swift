@@ -12,17 +12,51 @@ final class FigureView: UIView {
     
     private let figures: [ShapeType] = [.Circle, .Line, .Oval, .Rectangle, .RectangleCorners, .Treangle]
     
-    lazy var collectionView: UICollectionView = {
+    private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         
         let collectionView = UICollectionView(frame: .init(), collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.isPagingEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
+    }()
+    
+    private lazy var rightGradientView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var rightGradient: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.colors = [self.superview?.backgroundColor?.cgColor ??
+                            UIColor.systemBackground.cgColor,
+                           self.superview?.backgroundColor?.withAlphaComponent(0).cgColor ??
+                            UIColor.systemBackground.withAlphaComponent(0).cgColor]
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        return gradient
+    }()
+    
+    private lazy var leftGradientView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var leftGradient: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.colors = [self.superview?.backgroundColor?.withAlphaComponent(0).cgColor ??
+                            UIColor.systemBackground.withAlphaComponent(0).cgColor,
+                           self.superview?.backgroundColor?.cgColor ??
+                            UIColor.systemBackground.cgColor]
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        return gradient
     }()
     
     override init(frame: CGRect) {
@@ -36,11 +70,24 @@ final class FigureView: UIView {
     }
     
     private func setup() {
-        [collectionView].forEach{ self.addSubview($0)}
+        [collectionView, rightGradientView, leftGradientView].forEach{ self.addSubview($0)}
         
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(FigureCollectionViewCell.self, forCellWithReuseIdentifier: "FigureCollectionViewCell")
+        
+    }
+    
+    
+    private func settingGradient() {
+        
+        self.rightGradient.removeFromSuperlayer()
+        self.rightGradient.frame = CGRect(x: 0, y: 0, width: self.bounds.width / 8, height: self.bounds.height)
+        rightGradientView.layer.addSublayer(rightGradient)
+        
+        self.leftGradient.removeFromSuperlayer()
+        self.leftGradient.frame = CGRect(x: 0, y: 0, width: -self.bounds.width / 8, height: self.bounds.height)
+        leftGradientView.layer.addSublayer(leftGradient)
     }
     
     override func layoutSubviews() {
@@ -50,8 +97,19 @@ final class FigureView: UIView {
             collectionView.topAnchor.constraint(equalTo: self.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+        
+            rightGradientView.topAnchor.constraint(equalTo: self.topAnchor),
+            rightGradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            rightGradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            rightGradientView.widthAnchor.constraint(equalToConstant: 20),
+            
+            leftGradientView.topAnchor.constraint(equalTo: self.topAnchor),
+            leftGradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            leftGradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            leftGradientView.widthAnchor.constraint(equalToConstant: -20),
         ])
+        settingGradient()
     }
 }
 
@@ -65,7 +123,6 @@ extension FigureView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FigureCollectionViewCell",
                                                             for: indexPath) as? FigureCollectionViewCell else { return .init() }
         
-        //cell.backgroundColor = UIColor.init(cgColor: CGColor(red: .random(), green: .random(), blue: .random(), alpha: 1))
         cell.configure(with: figures[indexPath.row])
         
         return cell
