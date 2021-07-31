@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StartViewController: UIViewController {
+final class StartViewController: UIViewController {
     
     private let screenSize = UIScreen.main.bounds
     static var arrDrawings: DrawsModel = .init()
@@ -25,8 +25,8 @@ class StartViewController: UIViewController {
 
     private func editTitle() {
         switch StartViewController.arrDrawings.arrary.count - 1 {
-        case 0: self.title = "You don't have a draw"
-        case 1: self.title = "You have \(StartViewController.arrDrawings.arrary.count - 1) draw"
+        case 0: self.title = "You don't have a drawing"
+        case 1: self.title = "You have \(StartViewController.arrDrawings.arrary.count - 1) drawing"
         default: self.title = "You have \(StartViewController.arrDrawings.arrary.count - 1) drawnings"
         }
     }
@@ -86,7 +86,6 @@ extension StartViewController: UICollectionViewDelegate, UICollectionViewDataSou
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StartCollectionViewCell",
                                                             for: indexPath) as? StartCollectionViewCell else { return .init() }
         
-        //cell.backgroundColor = UIColor.init(cgColor: CGColor(red: .random(), green: .random(), blue: .random(), alpha: 1))
         cell.configure(with: StartViewController.arrDrawings.arrary[indexPath.row])
         
         return cell
@@ -107,7 +106,6 @@ extension StartViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        debugPrint(indexPath.row)
         newDraw(with: indexPath.row)
     }
     

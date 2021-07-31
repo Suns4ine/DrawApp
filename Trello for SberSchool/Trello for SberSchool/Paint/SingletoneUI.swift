@@ -8,13 +8,13 @@
 import UIKit
 
 //MARK: --Может будет выступать единым источником правды
-enum ShapeType {
-    case Treangle
-    case Rectangle
-    case RectangleCorners
-    case Circle
-    case Oval
-    case Line
+enum ShapeType: String {
+    case Treangle = "triangle"
+    case Rectangle = "rectangle" 
+    case RectangleCorners = "rounded-rectangle"
+    case Circle = "circle"
+    case Oval = "ellipse"
+    case Line = "diagonal-line"
 }
 
 protocol PaintUI {
