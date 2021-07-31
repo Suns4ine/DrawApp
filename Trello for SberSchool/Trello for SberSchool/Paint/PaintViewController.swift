@@ -9,6 +9,7 @@ import UIKit
 
 class PaintViewController: UIViewController {
     
+    
     private lazy var blankButton: UIBarButtonItem = {
         let button = UIBarButtonItem.menuButton(self, action: #selector(deleteLast(_:)), imageName: "")
         button.isEnabled = false
@@ -18,7 +19,9 @@ class PaintViewController: UIViewController {
     private let model: PaintUI = Singletone.shared
     private let colorReuseId = "colorReuseId"
     
-    private var colors = [UIColor.blue , .blue, .red, .brown, .cyan, .darkGray, .darkText, .gray, .green, .orange, .purple]
+    private var colors = [UIColor.systemBlue , .systemBlue, .systemPink, .systemTeal, .systemRed,
+                          .systemGray, .systemFill, .systemGreen, .systemOrange, .systemYellow,
+                          .systemPurple, .darkText, .magenta, .white, .lightGray, .brown, .cyan]
     private var touch = Set<UITouch>()
     private var array = [UIView]()
     private var initialCenter: CGPoint = .zero
@@ -37,6 +40,13 @@ class PaintViewController: UIViewController {
         return tv
     }()
     
+    private lazy var figureView: FigureView = {
+        let view = FigureView()
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private let deleteButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.setTitle("DeleteLast", for: .normal)
@@ -47,7 +57,7 @@ class PaintViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .secondarySystemFill
+        self.view.backgroundColor = .white
 
         self.navigationItem.rightBarButtonItems =
             [UIBarButtonItem.menuButton(self,
@@ -61,9 +71,23 @@ class PaintViewController: UIViewController {
         
         let myGesturuRecognizer = UIPanGestureRecognizer(target: self, action: #selector(myPan(_:)))
         self.view.addGestureRecognizer(myGesturuRecognizer)
-        self.view.addSubview(colorPickerView)
+        [colorPickerView, figureView].forEach{ view.addSubview($0)}
         colorPickerView.frame = CGRect(x: 20, y: 100, width: 30, height: 30)
         model.setColor(color: colors[0])
+        
+        editDraw()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        NSLayoutConstraint.activate([
+            
+            figureView.heightAnchor.constraint(equalToConstant: 60),
+            figureView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            figureView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            figureView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40)
+        ])
     }
     
     private func finish(drawing: DrawModel) {
@@ -82,6 +106,15 @@ class PaintViewController: UIViewController {
         
         vc.viewWillAppear(true)
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func editDraw() {
+        guard let drawing = drawModel else { return }
+        
+        array = drawing.arrayView
+        
+        
+        array.forEach{ view.addSubview($0)}
     }
     
     func configure(with model: DrawModel) {
@@ -108,6 +141,8 @@ class PaintViewController: UIViewController {
 extension PaintViewController : UITableViewDelegate, UITableViewDataSource {
     
     func getImageRender() -> UIImage {
+        self.figureView.isHidden = true
+        self.view.backgroundColor = .secondarySystemFill
         self.colorPickerView.isHidden = true
        return self.view.asImage()
     }

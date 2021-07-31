@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		358AC93426B45413007E148D /* DrawsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AC93326B45413007E148D /* DrawsModel.swift */; };
+		358AC93E26B55D5A007E148D /* FigureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AC93D26B55D5A007E148D /* FigureView.swift */; };
+		358AC94126B56AC3007E148D /* FigureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AC94026B56AC3007E148D /* FigureCollectionViewCell.swift */; };
 		35CE264B26AFBCAE000F4E84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CE264A26AFBCAE000F4E84 /* AppDelegate.swift */; };
 		35CE264D26AFBCAE000F4E84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CE264C26AFBCAE000F4E84 /* SceneDelegate.swift */; };
 		35CE264F26AFBCAE000F4E84 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CE264E26AFBCAE000F4E84 /* StartViewController.swift */; };
@@ -28,6 +30,8 @@
 
 /* Begin PBXFileReference section */
 		358AC93326B45413007E148D /* DrawsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawsModel.swift; sourceTree = "<group>"; };
+		358AC93D26B55D5A007E148D /* FigureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureView.swift; sourceTree = "<group>"; };
+		358AC94026B56AC3007E148D /* FigureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureCollectionViewCell.swift; sourceTree = "<group>"; };
 		35CE264726AFBCAE000F4E84 /* Trello for SberSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trello for SberSchool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35CE264A26AFBCAE000F4E84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35CE264C26AFBCAE000F4E84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 				C0B8977B26B0450500771113 /* SingletoneUI.swift */,
 				C0B8977C26B0450500771113 /* Shape */,
 				C0981CBC26B4BC71009C62DA /* CellColor.swift */,
+				358AC93D26B55D5A007E148D /* FigureView.swift */,
+				358AC94026B56AC3007E148D /* FigureCollectionViewCell.swift */,
 			);
 			path = Paint;
 			sourceTree = "<group>";
@@ -206,9 +212,11 @@
 				C0B8978D26B0495D00771113 /* OvalView.swift in Sources */,
 				35DA30B526B2553C001BF2FA /* StartCollectionViewCell.swift in Sources */,
 				C0B8978126B0450500771113 /* PaintViewController.swift in Sources */,
+				358AC94126B56AC3007E148D /* FigureCollectionViewCell.swift in Sources */,
 				C0981CBD26B4BC71009C62DA /* CellColor.swift in Sources */,
 				C0B8978226B0450500771113 /* RectView.swift in Sources */,
 				35CE264B26AFBCAE000F4E84 /* AppDelegate.swift in Sources */,
+				358AC93E26B55D5A007E148D /* FigureView.swift in Sources */,
 				C0B8977F26B0450500771113 /* TreangleView.swift in Sources */,
 				C0B8978026B0450500771113 /* SingletoneUI.swift in Sources */,
 				358AC93426B45413007E148D /* DrawsModel.swift in Sources */,
