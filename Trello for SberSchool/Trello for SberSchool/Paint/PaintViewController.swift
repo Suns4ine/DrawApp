@@ -47,7 +47,7 @@ class PaintViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .secondarySystemFill
+        self.view.backgroundColor = .white
 
         self.navigationItem.rightBarButtonItems =
             [UIBarButtonItem.menuButton(self,
