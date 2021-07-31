@@ -272,7 +272,7 @@ extension PaintViewController : UITableViewDelegate, UITableViewDataSource {
                            delay: 0.0,
               options: .curveEaseIn,
               animations: {
-                self.colorPickerView.frame = CGRect(x: 20, y: 100, width: 30, height: 30 * self.colors.count)
+                self.colorPickerView.frame = CGRect(x: 20, y: 100, width: 30, height: 30 * 7)
               },
               completion: nil)
             self.selectColorPicker.toggle()
