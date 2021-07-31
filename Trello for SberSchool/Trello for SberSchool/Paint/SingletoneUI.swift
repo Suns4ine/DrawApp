@@ -10,8 +10,8 @@ import UIKit
 //MARK: --Может будет выступать единым источником правды
 enum ShapeType: String {
     case Treangle = "triangle"
-    case Rectangle = "rounded-rectangle"
-    case RectangleCorners = "rectangle"
+    case Rectangle = "rectangle" 
+    case RectangleCorners = "rounded-rectangle"
     case Circle = "circle"
     case Oval = "ellipse"
     case Line = "diagonal-line"

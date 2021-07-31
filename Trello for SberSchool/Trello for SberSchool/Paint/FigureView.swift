@@ -16,8 +16,9 @@ final class FigureView: UIView {
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 150, bottom: 0, right: 150)
         
-        let collectionView = UICollectionView(frame: .init(), collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -133,12 +134,11 @@ extension FigureView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        guard var singeltone = singeltone  else { return }
-//        collectionView.delegate.
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        PaintViewController.model.setShape(shape: figures[indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.frame.height * 0.8, height: self.frame.height * 0.8)
     }
-    
 }

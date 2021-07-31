@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PaintViewController: UIViewController {
+final class PaintViewController: UIViewController {
     
     
     private lazy var blankButton: UIBarButtonItem = {
@@ -16,7 +16,7 @@ class PaintViewController: UIViewController {
         return button
     }()
     
-    private let model: PaintUI = Singletone.shared
+    static var model: PaintUI = Singletone.shared
     private let colorReuseId = "colorReuseId"
     
     private var colors = [UIColor.systemBlue , .systemBlue, .systemPink, .systemTeal, .systemRed,
@@ -55,6 +55,10 @@ class PaintViewController: UIViewController {
         return button
     }()
     
+    func editFugure(model: PaintUI) {
+        PaintViewController.model = model
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -73,7 +77,7 @@ class PaintViewController: UIViewController {
         self.view.addGestureRecognizer(myGesturuRecognizer)
         [colorPickerView, figureView].forEach{ view.addSubview($0)}
         colorPickerView.frame = CGRect(x: 20, y: 100, width: 30, height: 30)
-        model.setColor(color: colors[0])
+        PaintViewController.model.setColor(color: colors[0])
         
         editDraw()
     }
@@ -84,8 +88,8 @@ class PaintViewController: UIViewController {
         NSLayoutConstraint.activate([
             
             figureView.heightAnchor.constraint(equalToConstant: 75),
-            figureView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            figureView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            figureView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            figureView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             figureView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40)
         ])
     }
@@ -150,7 +154,7 @@ extension PaintViewController : UITableViewDelegate, UITableViewDataSource {
         case .began:
             initialCenter = sender.location(in: view)
             
-            switch model.shape {
+            switch PaintViewController.model.shape {
             case .Line:
                 let shape = createShape()
                 shape.touchesBegan(Set<UITouch>(), with: nil)
@@ -164,7 +168,7 @@ extension PaintViewController : UITableViewDelegate, UITableViewDataSource {
                 updatePickers()
             }
         case .changed:
-            switch model.shape {
+            switch PaintViewController.model.shape {
             case .Line:
                 array[array.count - 1].touchesMoved(self.touch, with: nil)
                 array[array.count - 1].setNeedsDisplay()
@@ -181,30 +185,30 @@ extension PaintViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     private func createShape() -> UIView {
-        switch model.shape {
+        switch PaintViewController.model.shape {
         case .Rectangle:
             let rectangle = RectView(frame: .zero)
-            rectangle.setColor(model.color)
+            rectangle.setColor(PaintViewController.model.color)
             return rectangle
         case .RectangleCorners:
             let rectangleCorners = RectableCornersView(frame: .zero)
-            rectangleCorners.setColor(model.color)
+            rectangleCorners.setColor(PaintViewController.model.color)
             return rectangleCorners
         case .Treangle:
             let treangle = TreangleView(frame: .zero)
-            treangle.setColor(model.color)
+            treangle.setColor(PaintViewController.model.color)
             return treangle
         case .Circle:
             let circle = CircleView(frame: .zero)
-            circle.setColor(model.color)
+            circle.setColor(PaintViewController.model.color)
             return circle
         case .Oval:
             let oval = OvalView(frame: .zero)
-            oval.setColor(model.color)
+            oval.setColor(PaintViewController.model.color)
             return oval
         case .Line:
             let line = LineView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-            line.setColor(model.color)
+            line.setColor(PaintViewController.model.color)
             return line
         }
     }
@@ -279,7 +283,7 @@ extension PaintViewController : UITableViewDelegate, UITableViewDataSource {
             self.selectColorPicker.toggle()
         }
         
-        model.setColor(color: color)
+        PaintViewController.model.setColor(color: color)
     }
 }
 

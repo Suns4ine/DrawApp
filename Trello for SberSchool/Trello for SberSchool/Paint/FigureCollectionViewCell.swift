@@ -32,6 +32,7 @@ final class FigureCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseOut, animations: {
+                self.layer.zPosition = self.isSelected ? 1 : -1
                 self.transform = self.isSelected ? CGAffineTransform(scaleX: 1.25, y: 1.25) : CGAffineTransform.identity
             }, completion: nil)
         }

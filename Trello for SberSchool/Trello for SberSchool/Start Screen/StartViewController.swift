@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StartViewController: UIViewController {
+final class StartViewController: UIViewController {
     
     private let screenSize = UIScreen.main.bounds
     static var arrDrawings: DrawsModel = .init()
