@@ -11,11 +11,23 @@ import UIKit
 
 struct DrawModel {
     var name: String
-    var wasSaved: Bool = false
-    //var image: UIImage
-}
-
-
-func configure(with model: DrawModel) {
+    var wasSaved: Bool
+    var background: UIImage?
+    let identifier: Int
+    var arrayView: [UIView] = []
+    private static var identifierFactory = 0
+    
+    private static func getUniqueIndex() -> Int {
+        identifierFactory += 1
+        return identifierFactory
+    }
+    
+    init(name: String, wasSaved: Bool = false, background: UIImage?) {
+        self.name = name
+        self.wasSaved = wasSaved
+        self.background = background
+        self.identifier = DrawModel.getUniqueIndex()
+    }
     
 }
+

@@ -17,6 +17,7 @@ class StartViewController: UIViewController {
         
         let collectionView = UICollectionView(frame: .init(), collectionViewLayout: collectionLayout)
         collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -31,11 +32,13 @@ class StartViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        collectionView.reloadData()
-        editTitle()
-    }
+            super.viewWillAppear(animated)
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+                self?.editTitle()
+            }
+        }
     
     
     override func viewDidLoad() {
@@ -56,7 +59,8 @@ class StartViewController: UIViewController {
     
     @objc private func newDraw(with index: Int) {
         let vc = PaintViewController()
-        vc.configure(with: StartViewController.arrDrawings.arrary[index], index: index)
+        debugPrint(StartViewController.arrDrawings.arrary[index].identifier)
+        vc.configure(with: StartViewController.arrDrawings.arrary[index])
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -82,7 +86,7 @@ extension StartViewController: UICollectionViewDelegate, UICollectionViewDataSou
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StartCollectionViewCell",
                                                             for: indexPath) as? StartCollectionViewCell else { return .init() }
         
-        cell.backgroundColor = UIColor.init(cgColor: CGColor(red: .random(), green: .random(), blue: .random(), alpha: 1))
+        //cell.backgroundColor = UIColor.init(cgColor: CGColor(red: .random(), green: .random(), blue: .random(), alpha: 1))
         cell.configure(with: StartViewController.arrDrawings.arrary[indexPath.row])
         
         return cell
@@ -103,11 +107,8 @@ extension StartViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        debugPrint(indexPath.row)
         newDraw(with: indexPath.row)
-    }
-    
-    func updateCollectionView() {
-        collectionView.reloadData()
     }
     
     func createCustomLayout() -> UICollectionViewLayout {
@@ -205,7 +206,3 @@ extension CGFloat {
         return CGFloat(arc4random()) / CGFloat(UInt32.max)
     }
 }
-
-/*
- [.init(name: "Новый Рисунок"), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true)]
- */

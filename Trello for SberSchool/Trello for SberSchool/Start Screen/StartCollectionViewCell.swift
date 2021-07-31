@@ -38,8 +38,14 @@ final class StartCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+                
+        clearCell()
         setup()
+    }
+    
+    private func clearCell() {
+        backgroundImage.image = nil
+        backgroundImage.isHidden = true
     }
     
     required init?(coder: NSCoder) {
@@ -47,7 +53,7 @@ final class StartCollectionViewCell: UICollectionViewCell {
     }
     
     private func setup() {
-        [nameDraw, imageAdd, backgroundImage].forEach{ addSubview($0)}
+        [imageAdd, backgroundImage, nameDraw].forEach{ addSubview($0)}
         
         self.backgroundColor = .secondarySystemFill
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -55,6 +61,14 @@ final class StartCollectionViewCell: UICollectionViewCell {
     
     func configure(with model: DrawModel) {
         nameDraw.text = model.name
+        
+        clearCell()
+        if model.identifier != 0 {
+            if let image = model.background {
+                backgroundImage.isHidden = false
+                backgroundImage.image = image
+            }
+        }
         
         if model.wasSaved == true {
             imageAdd.isHidden = true
