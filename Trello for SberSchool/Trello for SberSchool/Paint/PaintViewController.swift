@@ -9,6 +9,13 @@ import UIKit
 
 class PaintViewController: UIViewController {
     
+    
+    private lazy var blankButton: UIBarButtonItem = {
+        let button = UIBarButtonItem.menuButton(self, action: #selector(deleteLast(_:)), imageName: "")
+        button.isEnabled = false
+        return button
+    }()
+    
     private let model: PaintUI = Singletone.shared
     private let colorReuseId = "colorReuseId"
     
@@ -44,15 +51,13 @@ class PaintViewController: UIViewController {
         self.view.backgroundColor = .white
 
         self.navigationItem.rightBarButtonItems =
-            [UIBarButtonItem(image: UIImage(named: "check-mark-black-outline"),
-                             style: .done,
-                             target: self,
-                             action: #selector(saveDrawing)),
-             UIBarButtonItem(image: UIImage(named: "undo"),
-                             style: .done,
-                             target: self,
-                             action: #selector(deleteLast(_:)))]
-        
+            [UIBarButtonItem.menuButton(self,
+                                        action: #selector(saveDrawing),
+                                        imageName: "tick"),
+             blankButton,
+             UIBarButtonItem.menuButton(self,
+                                        action: #selector(deleteLast(_:)),
+                                        imageName: "undo (1)")]
         self.navigationController?.navigationBar.tintColor = .black
         
         let myGesturuRecognizer = UIPanGestureRecognizer(target: self, action: #selector(myPan(_:)))
@@ -259,5 +264,21 @@ extension UIView {
         return renderer.image { rendererContext in
             layer.render(in: rendererContext.cgContext)
         }
+    }
+}
+
+extension UIBarButtonItem {
+
+    static func menuButton(_ target: Any?, action: Selector, imageName: String) -> UIBarButtonItem {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: imageName), for: .normal)
+        button.addTarget(target, action: action, for: .touchUpInside)
+
+        let menuBarItem = UIBarButtonItem(customView: button)
+        menuBarItem.customView?.translatesAutoresizingMaskIntoConstraints = false
+        menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 24).isActive = true
+
+        return menuBarItem
     }
 }
