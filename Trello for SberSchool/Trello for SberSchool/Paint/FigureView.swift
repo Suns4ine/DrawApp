@@ -141,4 +141,18 @@ extension FigureView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.frame.height * 0.8, height: self.frame.height * 0.8)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cellCenter = collectionView.convert(cell.center, to: self)
+        debugPrint(cellCenter, collectionView.centerXAnchor)
+//        collectionView.centerdHorizontally
+        //debugPrint(collectionView.center.x, cellCenter.x, "\n")
+        if cellCenter.y == self.center.y {
+            
+        }
+//        if collectionView.cellForItem(at: indexPath)?.layout == self.center {
+//            collectionView.cellForItem(at: indexPath)?.isSelected = true
+//            //collectionView.reloadData()
+//        }
+    }
 }
