@@ -31,11 +31,13 @@ class StartViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        collectionView.reloadData()
-        editTitle()
-    }
+            super.viewWillAppear(animated)
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+                self?.editTitle()
+            }
+        }
     
     
     override func viewDidLoad() {
@@ -56,6 +58,7 @@ class StartViewController: UIViewController {
     
     @objc private func newDraw(with index: Int) {
         let vc = PaintViewController()
+        debugPrint(StartViewController.arrDrawings.arrary[index].identifier)
         vc.configure(with: StartViewController.arrDrawings.arrary[index])
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -103,6 +106,7 @@ extension StartViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        debugPrint(indexPath.row)
         newDraw(with: indexPath.row)
     }
     
@@ -201,7 +205,3 @@ extension CGFloat {
         return CGFloat(arc4random()) / CGFloat(UInt32.max)
     }
 }
-
-/*
- [.init(name: "Новый Рисунок"), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true), .init(name: "1", wasSaved: true), .init(name: "2", wasSaved: true), .init(name: "3", wasSaved: true), .init(name: "4", wasSaved: true)]
- */

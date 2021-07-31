@@ -22,7 +22,7 @@ class PaintViewController: UIViewController {
     private var touch = Set<UITouch>()
     private var array = [UIView]()
     private var initialCenter: CGPoint = .zero
-    private var drawModel: DrawModel?// = DrawModel(name: "", wasSaved: false, background: nil)
+    private var drawModel: DrawModel?
     private var selectColorPicker = false
     
     private lazy var colorPickerView: UITableView = {
@@ -77,7 +77,7 @@ class PaintViewController: UIViewController {
             drawing.wasSaved = true
             StartViewController.arrDrawings.addDrawing(with: drawing)
         } else {
-            StartViewController.arrDrawings.editDrawing(with: drawing, index: drawing.identifier)
+            StartViewController.arrDrawings.editDrawing(with: drawing)
         }
         
         vc.viewWillAppear(true)
@@ -105,7 +105,7 @@ class PaintViewController: UIViewController {
     }
 }
 
-extension PaintViewController {
+extension PaintViewController : UITableViewDelegate, UITableViewDataSource {
     
     func getImageRender() -> UIImage {
         self.colorPickerView.isHidden = true
@@ -146,9 +146,6 @@ extension PaintViewController {
             break
         }
     }
-}
-
-extension PaintViewController : UITableViewDelegate, UITableViewDataSource {
     
     private func createShape() -> UIView {
         switch model.shape {

@@ -56,9 +56,12 @@ final class StartCollectionViewCell: UICollectionViewCell {
     func configure(with model: DrawModel) {
         nameDraw.text = model.name
         
+        if let image = model.background {
+            backgroundImage.image = image
+        }
+        
         if model.wasSaved == true {
             imageAdd.isHidden = true
-            backgroundImage.image = model.background
         } else {
             nameDraw.textAlignment = .center
             imageAdd.isHidden = false

@@ -11,7 +11,7 @@ import UIKit
 
 struct DrawModel {
     var name: String
-    var wasSaved: Bool = false
+    var wasSaved: Bool
     var background: UIImage?
     let identifier: Int
     var arrayView: [UIView] = []
