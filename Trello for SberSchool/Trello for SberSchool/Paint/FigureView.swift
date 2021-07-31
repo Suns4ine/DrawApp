@@ -11,6 +11,7 @@ import UIKit
 final class FigureView: UIView {
     
     private let figures: [ShapeType] = [.Circle, .Line, .Oval, .Rectangle, .RectangleCorners, .Treangle]
+    private var singeltone: PaintUI?
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -65,6 +66,10 @@ final class FigureView: UIView {
         setup()
     }
     
+    func configure(with model: PaintUI) {
+        singeltone = model
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -75,7 +80,6 @@ final class FigureView: UIView {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(FigureCollectionViewCell.self, forCellWithReuseIdentifier: "FigureCollectionViewCell")
-        
     }
     
     
@@ -128,7 +132,13 @@ extension FigureView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: self.frame.height, height: self.frame.height)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        guard var singeltone = singeltone  else { return }
+//        collectionView.delegate.
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.frame.height * 0.8, height: self.frame.height * 0.8)
+    }
+    
 }

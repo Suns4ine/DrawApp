@@ -112,8 +112,6 @@ class PaintViewController: UIViewController {
         guard let drawing = drawModel else { return }
         
         array = drawing.arrayView
-        
-        
         array.forEach{ view.addSubview($0)}
     }
     

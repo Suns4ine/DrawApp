@@ -29,6 +29,14 @@ final class FigureCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    override var isSelected: Bool {
+        didSet {
+            UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseOut, animations: {
+                self.transform = self.isSelected ? CGAffineTransform(scaleX: 1.25, y: 1.25) : CGAffineTransform.identity
+            }, completion: nil)
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -61,10 +69,10 @@ final class FigureCollectionViewCell: UICollectionViewCell {
             circleView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             circleView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
 
-            image.heightAnchor.constraint(equalToConstant: 48),
-            image.widthAnchor.constraint(equalToConstant: 48),
-            image.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            image.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            image.topAnchor.constraint(equalTo: circleView.topAnchor, constant: 15),
+            image.bottomAnchor.constraint(equalTo: circleView.bottomAnchor, constant: -15),
+            image.leadingAnchor.constraint(equalTo: circleView.leadingAnchor, constant: 15),
+            image.trailingAnchor.constraint(equalTo: circleView.trailingAnchor, constant: -15),
         ])
     }
 }
