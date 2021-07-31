@@ -10,7 +10,7 @@ import UIKit
 
 final class FigureView: UIView {
     
-    private let figures: [String] = ["", "", "", "", "", "", ""]
+    private let figures: [ShapeType] = [.Circle, .Line, .Oval, .Rectangle, .RectangleCorners, .Treangle]
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -65,8 +65,8 @@ extension FigureView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FigureCollectionViewCell",
                                                             for: indexPath) as? FigureCollectionViewCell else { return .init() }
         
-        cell.backgroundColor = UIColor.init(cgColor: CGColor(red: .random(), green: .random(), blue: .random(), alpha: 1))
-        //cell.configure(with: StartViewController.arrDrawings.arrary[indexPath.row])
+        //cell.backgroundColor = UIColor.init(cgColor: CGColor(red: .random(), green: .random(), blue: .random(), alpha: 1))
+        cell.configure(with: figures[indexPath.row])
         
         return cell
     }

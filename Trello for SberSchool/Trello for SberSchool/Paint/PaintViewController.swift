@@ -83,7 +83,7 @@ class PaintViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             
-            figureView.heightAnchor.constraint(equalToConstant: 60),
+            figureView.heightAnchor.constraint(equalToConstant: 75),
             figureView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             figureView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             figureView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40)
