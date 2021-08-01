@@ -33,7 +33,7 @@ class Singletone: PaintUI {
     }()
     
     var color: UIColor = .clear
-    var shape: ShapeType = .RectangleCorners
+    var shape: ShapeType = .Circle
     
     func setColor(color: UIColor) {
         self.color = color

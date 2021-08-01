@@ -48,14 +48,6 @@ final class PaintViewController: UIViewController {
         return view
     }()
     
-//    private let deleteButton: UIButton = {
-//        let button = UIButton(frame: .zero)
-//        button.setTitle("DeleteLast", for: .normal)
-//        button.backgroundColor = .red
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
-    
     func editFugure(model: PaintUI) {
         PaintViewController.model = model
     }
@@ -245,15 +237,17 @@ extension PaintViewController : UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return colors.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: colorReuseId, for: indexPath) as! CellColor
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: colorReuseId,
+                                                       for: indexPath) as? CellColor else { return .init() }
+        
         let color = colors[indexPath.row]
-        cell.setColor(color)
+        cell.contentView.backgroundColor = color
+        //cell.setColor(color)
         
         return cell
     }
