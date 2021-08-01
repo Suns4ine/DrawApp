@@ -31,6 +31,7 @@ final class PaintViewController: UIViewController {
     private lazy var colorPickerView: UITableView = {
         let tv = UITableView(frame: .zero, style: .plain)
         tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.showsVerticalScrollIndicator = false
         tv.backgroundColor = .clear
         tv.delegate = self
         tv.dataSource = self
@@ -47,13 +48,13 @@ final class PaintViewController: UIViewController {
         return view
     }()
     
-    private let deleteButton: UIButton = {
-        let button = UIButton(frame: .zero)
-        button.setTitle("DeleteLast", for: .normal)
-        button.backgroundColor = .red
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+//    private let deleteButton: UIButton = {
+//        let button = UIButton(frame: .zero)
+//        button.setTitle("DeleteLast", for: .normal)
+//        button.backgroundColor = .red
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        return button
+//    }()
     
     func editFugure(model: PaintUI) {
         PaintViewController.model = model
