@@ -32,7 +32,7 @@
 		358AC93326B45413007E148D /* DrawsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawsModel.swift; sourceTree = "<group>"; };
 		358AC93D26B55D5A007E148D /* FigureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureView.swift; sourceTree = "<group>"; };
 		358AC94026B56AC3007E148D /* FigureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureCollectionViewCell.swift; sourceTree = "<group>"; };
-		35CE264726AFBCAE000F4E84 /* Trello for SberSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trello for SberSchool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35CE264726AFBCAE000F4E84 /* DrawAppSber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawAppSber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35CE264A26AFBCAE000F4E84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35CE264C26AFBCAE000F4E84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		35CE264E26AFBCAE000F4E84 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		35CE263E26AFBCAE000F4E84 = {
 			isa = PBXGroup;
 			children = (
-				35CE264926AFBCAE000F4E84 /* Trello for SberSchool */,
+				35CE264926AFBCAE000F4E84 /* DrawAppSber */,
 				35CE264826AFBCAE000F4E84 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,12 +94,12 @@
 		35CE264826AFBCAE000F4E84 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				35CE264726AFBCAE000F4E84 /* Trello for SberSchool.app */,
+				35CE264726AFBCAE000F4E84 /* DrawAppSber.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		35CE264926AFBCAE000F4E84 /* Trello for SberSchool */ = {
+		35CE264926AFBCAE000F4E84 /* DrawAppSber */ = {
 			isa = PBXGroup;
 			children = (
 				355C1F1D26B43BBF00909D4D /* Another Files */,
@@ -109,7 +109,7 @@
 				35DA30B726B259C7001BF2FA /* DrawModel.swift */,
 				358AC93326B45413007E148D /* DrawsModel.swift */,
 			);
-			path = "Trello for SberSchool";
+			path = DrawAppSber;
 			sourceTree = "<group>";
 		};
 		C0B8977926B044BA00771113 /* Paint */ = {
@@ -141,9 +141,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		35CE264626AFBCAE000F4E84 /* Trello for SberSchool */ = {
+		35CE264626AFBCAE000F4E84 /* DrawAppSber */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 35CE265B26AFBCB2000F4E84 /* Build configuration list for PBXNativeTarget "Trello for SberSchool" */;
+			buildConfigurationList = 35CE265B26AFBCB2000F4E84 /* Build configuration list for PBXNativeTarget "DrawAppSber" */;
 			buildPhases = (
 				35CE264326AFBCAE000F4E84 /* Sources */,
 				35CE264426AFBCAE000F4E84 /* Frameworks */,
@@ -153,9 +153,9 @@
 			);
 			dependencies = (
 			);
-			name = "Trello for SberSchool";
+			name = DrawAppSber;
 			productName = "Trello for SberSchool";
-			productReference = 35CE264726AFBCAE000F4E84 /* Trello for SberSchool.app */;
+			productReference = 35CE264726AFBCAE000F4E84 /* DrawAppSber.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -172,7 +172,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 35CE264226AFBCAE000F4E84 /* Build configuration list for PBXProject "Trello for SberSchool" */;
+			buildConfigurationList = 35CE264226AFBCAE000F4E84 /* Build configuration list for PBXProject "DrawAppSber" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -185,7 +185,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				35CE264626AFBCAE000F4E84 /* Trello for SberSchool */,
+				35CE264626AFBCAE000F4E84 /* DrawAppSber */,
 			);
 		};
 /* End PBXProject section */
@@ -364,13 +364,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QZA5Q28CH8;
-				INFOPLIST_FILE = "Trello for SberSchool/Info.plist";
+				INFOPLIST_FILE = DrawAppSber/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Sber-Project.Trello-for-SberSchool";
+				PRODUCT_BUNDLE_IDENTIFIER = "Sber-Project.DrawAppSber";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -384,13 +384,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QZA5Q28CH8;
-				INFOPLIST_FILE = "Trello for SberSchool/Info.plist";
+				INFOPLIST_FILE = DrawAppSber/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Sber-Project.Trello-for-SberSchool";
+				PRODUCT_BUNDLE_IDENTIFIER = "Sber-Project.DrawAppSber";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -400,7 +400,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		35CE264226AFBCAE000F4E84 /* Build configuration list for PBXProject "Trello for SberSchool" */ = {
+		35CE264226AFBCAE000F4E84 /* Build configuration list for PBXProject "DrawAppSber" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				35CE265926AFBCB2000F4E84 /* Debug */,
@@ -409,7 +409,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		35CE265B26AFBCB2000F4E84 /* Build configuration list for PBXNativeTarget "Trello for SberSchool" */ = {
+		35CE265B26AFBCB2000F4E84 /* Build configuration list for PBXNativeTarget "DrawAppSber" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				35CE265C26AFBCB2000F4E84 /* Debug */,
